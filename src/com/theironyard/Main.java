@@ -1,5 +1,7 @@
 package com.theironyard;
 
+import jodd.json.JsonSerializer;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -39,6 +41,21 @@ public class Main {
             fw.append(line);
         }
         fw.close();
+
+
+/**
+ *  option 2: JSONSerializer. Working, utilizes JSON, and returns output. chose to go with what is above instead as
+ *  output doesn't look as clean as what is above. Maybe just needed to format the output a little better.
+ */
+
+//        ArrayList<Country> aL = map.get(finalQuery);
+//        JsonSerializer serializer = new JsonSerializer();
+//        String json = serializer.serialize(aL);
+//        File file = new File(finalQuery + "_countries.txt");
+//        FileWriter fw = new FileWriter(file);
+//        fw.write(json);
+//        fw.close();
+
     }
 
 
