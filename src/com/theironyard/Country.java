@@ -30,6 +30,9 @@ public class Country {
 
     @Override
     public String toString() {
-        return name;
+        return "Country{" +
+                "abbreviation='" + abbreviation + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

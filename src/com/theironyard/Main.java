@@ -1,10 +1,8 @@
 package com.theironyard;
 
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -23,19 +21,20 @@ public class Main {
 
         if (!map.containsKey(letter)) map.put(letter, new ArrayList<>());
 
-        ArrayList<Country> arrayList = map.get(letter);
-        arrayList.add(country);
+        ArrayList<Country> aL = map.get(letter);
+        aL.add(country); //why can't i pass country.name as arg here?
     }
 
 
 
     //method to put each country on its own line in the file i write out for the chosen state
     public static void createList(String finalQuery, HashMap<String, ArrayList<Country>> map) throws IOException {
+
         File file = new File(finalQuery + "_countries.txt");
         FileWriter fw = new FileWriter(file);
 
-        ArrayList<Country> aL2 = map.get(finalQuery);
-        for (Country country : aL2) {
+        ArrayList<Country> aL = map.get(finalQuery);
+        for (Country country : aL) {
             String line = String.format("%s\n", country.name);
             fw.append(line);
         }
@@ -47,7 +46,6 @@ public class Main {
 
         HashMap<String, ArrayList<Country>> map = new HashMap<>();
 
-        //read countries.txt
         File f = new File(FILE_NAME);
 
         //instantiate 2 different scanners
@@ -61,7 +59,7 @@ public class Main {
         }
 
         //ask for user input, convert input to uppercase, and then evaluate for valid input.
-        System.out.println("Enter a letter to return all countries whose name starts with that letter.");
+        System.out.println("Enter a letter to return all countries whose name starts with your chosen letter.");
         String query = (scanner.nextLine());
         String finalQuery = query.toUpperCase();
 
@@ -71,20 +69,5 @@ public class Main {
         else {
             createList(finalQuery, map);
         }
-
-
-//            return to this when it's time to use json, will need to be adjusted
-//        else {
-//
-//            JsonSerializer serializer = new JsonSerializer();
-//            String json = serializer.serialize(map.get(finalQuery));
-//            String fileLetter = query.toUpperCase();
-//            String fileName = fileLetter + "_countries.txt";
-//            File file = new File(fileName);
-//            FileWriter fw = new FileWriter(file);
-//            fw.write(json);
-//            fw.close();
-
-
     }
 }
